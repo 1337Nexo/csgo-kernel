@@ -1,4 +1,4 @@
-# csgo-kernel
+# CSGO Kernel
  
 A simple and smart CS:GO cheat.
 
