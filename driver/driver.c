@@ -1,7 +1,6 @@
 #include "ntos.h"
 
 // https://github.com/Zer0Mem0ry/KernelBhop
-// DeviceIo is probably detected..
 
 #define IO_READ_REQUEST CTL_CODE(FILE_DEVICE_UNKNOWN, 0x0701, METHOD_BUFFERED, FILE_SPECIAL_ACCESS)
 
@@ -136,8 +135,8 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriverObject, PUNICODE_STRING pRegistryPath
 {
 	PsSetLoadImageNotifyRoutine(ImageLoadCallback);
 
-	RtlInitUnicodeString(&dev, L"\\Device\\driver");
-	RtlInitUnicodeString(&dos, L"\\DosDevices\\driver");
+	RtlInitUnicodeString(&dev, L"\\Device\\csgokernel");
+	RtlInitUnicodeString(&dos, L"\\DosDevices\\csgokernel");
 
 	IoCreateDevice(pDriverObject, 0, &dev, FILE_DEVICE_UNKNOWN, FILE_DEVICE_SECURE_OPEN, FALSE, &pDeviceObject);
 	IoCreateSymbolicLink(&dos, &dev);

@@ -22,19 +22,17 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="keinterface.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="service.h" />
     <ClInclude Include="xorstr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="service.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A7D8CC57-F70B-4AA8-9EE4-7D596F3B78B9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>KernelBhop</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
-    <ProjectName>notepad</ProjectName>
+    <ProjectName>usermode</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

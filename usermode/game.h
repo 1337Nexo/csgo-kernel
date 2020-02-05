@@ -2,7 +2,7 @@
 #include <iostream>
 #include "keinterface.h"
 
-KeInterface driver("\\\\.\\driver");
+KeInterface driver("\\\\.\\csgokernel");
 
 namespace offsets
 {
@@ -16,34 +16,34 @@ class manager
 {
 public:
 	DWORD pid;
-	DWORD client_address;
+	DWORD clientAddress;
 
 	manager()
 	{
 		pid = driver.get_pid();
 
-		std::cout << xorstr_("[*]: pid: ") << pid << std::endl;
+		std::cout << XorStr("[procId]: ") << pid << std::endl;
 
-		client_address = driver.get_module();
+		clientAddress = driver.get_module();
 
-		std::cout << xorstr_("[*]: client_address: ") << std::uppercase << std::hex << client_address << std::endl;
+		std::cout << XorStr("[clientAddress]: ") << std::uppercase << std::hex << clientAddress << std::endl;
 	}
 
-	DWORD in_ground()
+	DWORD inGround()
 	{
-		return driver.Read<DWORD>(pid, local_player() + offsets::m_fFlags, sizeof(ULONG));
+		return driver.Read<DWORD>(pid, localPlayer() + offsets::m_fFlags, sizeof(ULONG));
 	}
 
-	DWORD local_player()
+	DWORD localPlayer()
 	{
-		return driver.Read<DWORD>(pid, client_address + offsets::dwLocalPlayer, sizeof(ULONG));;
+		return driver.Read<DWORD>(pid, clientAddress + offsets::dwLocalPlayer, sizeof(ULONG));;
 	}
 	
-	bool glow()
+	bool doGlow()
 	{
 		for (int i = 1; i < 65; i++)
 		{
-			int dwCurrentEntity = driver.Read<int>(pid, client_address + offsets::dwEntityList + (i * 16), sizeof(int));
+			int dwCurrentEntity = driver.Read<int>(pid, clientAddress + offsets::dwEntityList + (i * 16), sizeof(int));
 
 			if (dwCurrentEntity)
 			{
@@ -58,21 +58,21 @@ public:
 		return TRUE;
 	}
 
-	bool bhop()
+	bool doBhop()
 	{
-		if (!local_player())
-			return 0;
+		if (!localPlayer())
+			return FALSE;
 
-		if (!in_ground())
-			return 0;
+		if (!inGround())
+			return FALSE;
 
-		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) && (in_ground()))
+		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) && (inGround()))
 		{
-			driver.Write(pid, client_address + offsets::dwForceJump, 0x5, 8);
+			driver.Write(pid, clientAddress + offsets::dwForceJump, 0x5, 8);
 			std::this_thread::sleep_for(std::chrono::milliseconds(50));
-			driver.Write(pid, client_address + offsets::dwForceJump, 0x4, 8);
-
+			driver.Write(pid, clientAddress + offsets::dwForceJump, 0x4, 8);
 		}
+
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
 		return TRUE;
