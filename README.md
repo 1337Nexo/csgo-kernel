@@ -1,19 +1,15 @@
 # csgo-kernel
  
-a very trash cs:go cheat
+A simple and smart CS:GO cheat.
 
-### informations:
-- **outdated**
-- **compile the driver in x64, and the usermode hax in x86 (release on both)**
-- fork https://github.com/Zer0Mem0ry/KernelBhop.
-- credits: gabrielzuum, icy (sc things) and zer0mem0ry (driver).
+### Informations:
+- **Compile the kernelmode in x64 and the usermode in x86 (Release on both)**
+- Fork of https://github.com/Zer0Mem0ry/KernelBhop.
+- Credits: Zer0Mem0ry (driver).
 
-### features:
+### Features:
 
- - glow
- - bhop
- - clean code
- - xor encrypted string
- - detected deviceio (gift for you <3)
- - auto load/unload driver
- - undetected on the worst league platform in the world (memersclub)
+ - Glow
+ - Bhop
+ - Clean code
+ - Xor strings
