@@ -5,22 +5,20 @@
 #include "game.h"
 #include "keinterface.h"
 
-inline void featuresThread(manager game)
+inline void features_thread(game game)
 {
 	while (TRUE)
 	{
-		game.doGlow();
-		game.doBhop();
+		game.glow();
+		game.bhop();
 	}
 }
 
 int main()
 {
-	SetConsoleTitle(" ");
+	game game;
 
-	manager game;
-
-	std::thread features(&featuresThread, game);
+	std::thread features(&features_thread, game);
 	features.detach();
 
 	while (TRUE)

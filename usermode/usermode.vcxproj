@@ -22,10 +22,12 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="keinterface.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="parson.h" />
     <ClInclude Include="xorstr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="parson.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A7D8CC57-F70B-4AA8-9EE4-7D596F3B78B9}</ProjectGuid>

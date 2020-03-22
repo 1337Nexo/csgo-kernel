@@ -134,9 +134,9 @@ static auto w_sprintf_s = [](char* buf, size_t buf_size, const char* fmt, ...) {
 };
 
 #ifdef NDEBUG
-#define XorStr( s ) ( XorCompileTime::XorString< sizeof( s ) - 1, __COUNTER__ >( s, std::make_index_sequence< sizeof( s ) - 1>() ).decrypt() )
+#define xor_str( s ) ( XorCompileTime::XorString< sizeof( s ) - 1, __COUNTER__ >( s, std::make_index_sequence< sizeof( s ) - 1>() ).decrypt() )
 #else
-#define XorStr( s ) ( s )
+#define xor_str( s ) ( s )
 #endif
 
 END_NAMESPACE
