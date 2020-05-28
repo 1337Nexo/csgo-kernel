@@ -11,6 +11,7 @@ namespace offsets
 	static uintptr_t m_fFlags;
 	static uintptr_t dwForceJump;
 	static uintptr_t dwEntityList;
+	static uintptr_t m_bGunGameImmunity;
 }
 
 class game
@@ -39,6 +40,7 @@ public:
 			offsets::dwLocalPlayer = (DWORD)json_object_get_number(signatures, "dwLocalPlayer");
 			offsets::dwForceJump = (DWORD)json_object_get_number(signatures, "dwForceJump");
 			offsets::m_fFlags = (DWORD)json_object_get_number(netvars, "m_fFlags");
+			offsets::m_bGunGameImmunity = (DWORD)json_object_get_number(netvars, "m_bGunGameImmunity");
 			json_value_free(root_value);
 		}
 
@@ -48,6 +50,7 @@ public:
 		std::cout << xor_str("[dwLocalPlayer]: 0x") << std::uppercase << std::hex << offsets::dwLocalPlayer << std::endl;
 		std::cout << xor_str("[dwForceJump]: 0x") << std::uppercase << std::hex << offsets::dwForceJump << std::endl;
 		std::cout << xor_str("[m_fFlags]: 0x") << std::uppercase << std::hex << offsets::m_fFlags << std::endl;
+		std::cout << xor_str("[m_bGunGameImmunity]: 0x") << std::uppercase << std::hex << offsets::m_bGunGameImmunity << std::endl;
 	}
 
 	DWORD is_in_ground()
@@ -70,7 +73,7 @@ public:
 			{
 				float flSensorTime = 86400.f;
 
-				driver.Write(pid, dwCurrentEntity + 0x3960, flSensorTime, sizeof(float));
+				driver.Write(pid, dwCurrentEntity + (offsets::m_bGunGameImmunity + 0x34), flSensorTime, sizeof(float));
 			}
 		}
 
